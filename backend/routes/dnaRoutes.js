@@ -24,15 +24,9 @@ router.get('/:id',
 );
 
 // POST create new artist (traditional)
-router.post('/',
-  validateArtistInput,
-  createArtist
-);
+router.post('/', validateArtistInput, createArtist);
 
 // POST create DNA profile (for Step5Publish)
-router.post('/dna-profiles',
-  validateDNAProfile,
-  createDNAProfile
-);
+router.post('/dna-profiles', validateDNAProfile, createDNAProfile);
 
 export default router;
