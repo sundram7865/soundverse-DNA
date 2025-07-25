@@ -3,15 +3,15 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const sequelize = new Sequelize(process.env.NEON_DATABASE_URL, {
+const sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://user:pass@localhost:5432/soundverse', {
   dialect: 'postgres',
-  dialectOptions: {
+  logging: process.env.NODE_ENV === 'development' ? console.log : false,
+  dialectOptions: process.env.NODE_ENV === 'production' ? {
     ssl: {
       require: true,
       rejectUnauthorized: false
     }
-  },
-  logging: false
+  } : {}
 });
 
 export default sequelize;
